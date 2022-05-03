@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professors</title>
+    
+</head>
+<h1>Profssors</h1>
+<a href="index.html">Home</a> <a href="Students.html">Students</a> 
+<a href="Houses.html">Houses</a> <a href="Books.html">Houses</a> 
+<a href="Class_Schedules.html">Schedules</a> <a href="Professors.html">Professors</a>
+<p>
+    Welcome to the professors page, where we proudly display the best and brightest magical educators
+    in the world!
+</p>
+<div id="select">
+    <table>
+        <tr>
+            <th>class_id</th>
+            <th>class_name</th>
+            <th>description</th>
+            <th>schedule_id</th>
+            <th>start_time</th>
+            <th>end_time</th>
+            <th>class_size</th>
+            <th>professor_id</th>
+            <th>book_id</th>
+            <th>cost</th>
+            <th>class_year</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Introduction to ritual casting</td>
+            <td>Learn the basics of Ritual Magic! The strongest spells are built from careful preparation.</td>
+            <td>1</td>
+            <td>10:30:00</td>
+            <td>12:30:00</td>
+            <td>12</td>
+            <td>1</td>
+            <td>1</td>
+            <td>254.32</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Human Transfiguration</td>
+            <td>Transform yourself and others! Careful casting and rigorous ethics are required to master this unique sorcery.</td>
+            <td>2</td>
+            <td>14:00:00</td>
+            <td>19:00:00</td>
+            <td>4</td>
+            <td>2</td>
+            <td>2</td>
+            <td>1200.00</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Ethics of Mind Magic</td>
+            <td>Learn about the limits of ethical mind manipulation, and what can and will go wrong when magic is pushed too far.</td>
+            <td>3</td>
+            <td>08:00:00</td>
+            <td>09:30:00</td>
+            <td>30</td>
+            <td>3</td>
+            <td>3</td>
+            <td>300.00</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Wand Movement 101</td>
+            <td>An introduction to using a wand to focus your spellcasting!</td>
+            <td>2</td>
+            <td>15:00:00</td>
+            <td>16:00:00</td>
+            <td>35</td>
+            <td>4</td>
+            <td>5</td>
+            <td>100.00</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Medical Potions</td>
+            <td>Treatment and prevention of all manner of magical malady, through the lens of potion brewing.</td>
+            <td>3</td>
+            <td>07:00:00</td>
+            <td>10:00:00</td>
+            <td>20</td>
+            <td>5</td>
+            <td>4</td>
+            <td>300.00</td>
+            <td>3</td>
+        </tr>
+    </table>
+</div>
+<div id="insert">
+    <form method = "POST" id="addProfessor">
+        <legend>Add Professor</legend>
+        <fieldset class="options">
+            <label for="class_name">class name</label> <input type="text" name="class_name">
+            <label for="description">description</label> <input type="text" name="description">
+            <label for="schedule_id">schedule_id</label> <select name="schedule_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">M/W/F</option>
+                <option value="2">T/Th</option>
+                <option value="3">M/T/W/Th/F</option>
+            </select>
+            <label for="start_time">start time</label> <input type="text" name="start_time">
+            <label for="end_time">end time</label> <input type="text" name="end_time">
+            <label for="class_size">class size</label> <input type="text" name="class_size">
+            <label for="professor_id">professor</label> <select name="professor_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">Lambdrey Fortenhiemer</option>
+                <option value="2">Quilver Bellamy</option>
+                <option value="3">Havel Trellis</option>
+                <option value="4">Exus Muldrake</option>
+                <option value="5">Boliver Swordsworth</option>
+            </select>
+            <label for="book_id">Book</label> <select name="book_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">Dragonwrath book of dark magic</option>
+                <option value="2">Flux book of potions</option>
+                <option value="3">Ancient book of Runes</option>
+                <option value="4">Grimoire spell casting guide</option>
+                <option value="5">Dummies guide to wand spells</option>
+            </select>
+            <label for="cost">cost($)</label> <input type="text" name="cost">
+            <label for="class_year">class year</label> <input type="text" name="class_year">
+        </fieldset>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
