@@ -1,58 +1,78 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Professors</title>
-    <script language="JavaScript">
-		function showform(action) {
-			/*
-			* 2 options: select, insert.
-			* this function sets one visible the other not
-            * heavily inspired by the demo BSG page, but modified to fit professors,
-            * and some options removed.
-			*/
-			if (action == 'insert'){
-				document.getElementById('select').style.display = 'none';
-				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'none';
-			}
-            else if (action == 'all'){
-				document.getElementById('select').style.display = 'block';
-				document.getElementById('insert').style.display = 'block';
-			}
-			else { 
-				document.getElementById('select').style.display = 'block';
-				document.getElementById('insert').style.display = 'none';
-			}
-		}
-        function newProfessor() {
-             showform('insert'); 
-        }
-        function selectProfessor() { 
-            showform ('select'); 
-        }
-        function showAll() { 
-            showform ('all'); 
-        }
-    </script>
+    
 </head>
-
-<body onload = "showAll()">
-<h1>Professors</h1>
+<h1>Profssors</h1>
 <a href="index.html">Home</a> <a href="Classes.html">Classes</a> <a href="Houses.html">Houses</a>
 <p>
     Welcome to the professors page, where we proudly display the best and brightest magical educators
     in the world!
 </p>
 <div id="select">
-    <p><a href="#" onClick="showAll()">Show all options</a> </p>
     <table>
         <tr>
-            <th><a href = '#' onClick ="newProfessor()">NEW</a></th>
-            <th></th>
             <th>professor_id</th>
-            <th></th>
+            <th>f_name</th>
+            <th>l_name</th>
+            <th>age</th>
+            <th>house_id</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Lambdrey</td>
+            <td>Fortenhiemer</td>
+            <td>24</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Quilver</td>
+            <td>Bellamy</td>
+            <td>46</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Havel</td>
+            <td>Trellis</td>
+            <td>58</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Exus</td>
+            <td>Muldrake</td>
+            <td>30</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Boliver</td>
+            <td>Swordsworth</td>
+            <td>35</td>
+            <td>1</td>
         </tr>
     </table>
 </div>
-
+<div id="insert">
+    <form method = "POST" id="addProfessor">
+        <legend>Add Professor</legend>
+        <fieldset class="options">
+            <label>first name</label> <input type="text" name="f_name">
+            <label>last name</label> <input type="text" name="l_name">
+            <label>age</label> <input type="text" name="age">
+            <label>house</label> <select name="house_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">House of Eldritch</option>
+                <option value="2">House of Starfall</option>
+                <option value="3">House of Brimstone</option>
+                <option value="4">House of Gilded</option>
+                <option value="5">House of Folio</option>
+            </select>
+        </fieldset>
+    </form>
+</div>
 </body>
 </html>
