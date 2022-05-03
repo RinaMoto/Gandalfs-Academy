@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Professors</title>
+    
+</head>
+<h1>Profssors</h1>
+<a href="index.html">Home</a> <a href="Classes.html">Classes</a> <a href="Houses.html">Houses</a>
+<p>
+    Welcome to the professors page, where we proudly display the best and brightest magical educators
+    in the world!
+</p>
+<div id="select">
+    <table>
+        <tr>
+            <th>professor_id</th>
+            <th>f_name</th>
+            <th>l_name</th>
+            <th>age</th>
+            <th>house_id</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Lambdrey</td>
+            <td>Fortenhiemer</td>
+            <td>24</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Quilver</td>
+            <td>Bellamy</td>
+            <td>46</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Havel</td>
+            <td>Trellis</td>
+            <td>58</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Exus</td>
+            <td>Muldrake</td>
+            <td>30</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Boliver</td>
+            <td>Swordsworth</td>
+            <td>35</td>
+            <td>1</td>
+        </tr>
+    </table>
+</div>
+<div id="insert">
+    <form method = "POST" id="addProfessor">
+        <legend>Add Professor</legend>
+        <fieldset class="options">
+            <label for="f_name">first name</label> <input type="text" name="f_name">
+            <label for="l_name">last name</label> <input type="text" name="l_name">
+            <label for="age">age</label> <input type="text" name="age">
+            <label for="house_id">house</label> <select name="house_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">House of Eldritch</option>
+                <option value="2">House of Starfall</option>
+                <option value="3">House of Brimstone</option>
+                <option value="4">House of Gilded</option>
+                <option value="5">House of Folio</option>
+            </select>
+        </fieldset>
+        <input type = "submit" value = "Submit">
+    </form>
+</div>
+</body>
+</html>
