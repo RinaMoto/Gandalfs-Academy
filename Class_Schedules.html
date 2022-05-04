@@ -11,47 +11,79 @@
             <a href="https://web.engr.oregonstate.edu/~easterdr/Gandalfs-Academy/Classes.html">Classes</a>
         </nav>
     </head>
-    
-
-    <h3>Browse Class Schedules</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Monday</th>
-                <th>Tuesday</th>
-                <th>Wednesday</th>
-                <th>Thursday</th>
-                <th>Friday</th>
-                <th>Saturday</th>
-                <th>Sunday</th>
-            </tr>
-        </thead>  
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>1</td>
-                <td>0</td>
-                <th>1</th>
-                <td>0</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>0</td>
-                <td>1</td>
-                <th>0</th>
-                <td>1</td>
-                <td>0</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>1</td>
-                <td>1</td>
-                <th>1</th>
-                <td>1</td>
-                <td>1</td>
-            </tr>
-        </tbody>
-    </table>
+    <body>
+        <h3>Browse Class Schedules</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>schedule_id</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                </tr>
+            </thead>  
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>0</td>
+                    <th>1</th>
+                    <td>0</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <th>0</th>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <th>1</th>
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="insert">
+            <form method="POST" id="addClassSchedules">
+                <h2>Add Class Schedules</h2>
+                <fieldset class="option">
+                    <label for="Monday">Monday</label>
+                    <select name="Monday" id="Monday">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <label for="Tuesday">Tuesday</label>
+                    <select name="Tuesday" id="Tuesday">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <label for="Wednesday">Wednesday</label>
+                    <select name="Wednesday" id="Wednesday">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <label for="Thursday">Thursday</label>
+                    <select name="Thursday" id="Thursday">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <label for="Friday">Friday</label>
+                    <select name="Friday" id="Friday">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <button>Add</button>
+                    <button>Cancel</button>
+                </fieldset>
+            </form>
+        </div>
+    </body>
 </html>
