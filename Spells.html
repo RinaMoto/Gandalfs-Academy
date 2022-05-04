@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <h1>Spells</h1>
+    </head>
+    <body>
+        <h3>Browse Spells</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>spell_id</th>
+                    <th>spell_name</th>
+                    <th>Description</th>
+                    <th>require_wand</th>
+                    <th>spell_type</th>
+                </tr>
+            </thead>  
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Palladian</td>
+                    <td>casts a spell on someone to say only the truth for 10 minutes</td>
+                    <td>0</td>
+                    <td>Enchantment</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Compendium</td>
+                    <td>the person who casts the spell can be any animal of their choosing for 24 hours</td>
+                    <td>1</td>
+                    <td>Transfiguration</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Vade Mecum</td>
+                    <td>takes the life of a person to prolong the life of the person who casts the spell</td>
+                    <td>1</td>
+                    <td>Dark magic</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Albaster</td>
+                    <td>stops the flow of time for everyone but yourself for a brief period of time</td>
+                    <td>0</td>
+                    <td>Time spells</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Luminous</td>
+                    <td>casts a spell on someone to take a course of action they would otherwise find ridiculous</td>
+                    <td>1</td>
+                    <td>Enchantment</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="insert">
+            <form method="POST" id="addBook">
+                <h2>Add Spell</h2>
+                <fieldset class="option">
+                    <label>spell_name <input type="text" name="spell_name"/></label>
+                    <label>description <textarea type="text" name="spell_name"></textarea></label>
+                    <label for="require_wand">require_wand </label>
+                    <select name="require_wand" id="require_wand">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <label for="spell_type">spell_type </label>
+                    <select name="spell_type" id="spell_type">
+                        <option value="Enchantment">Enchantment</option>
+                        <option value="Transfiguration">Transfiguration</option>
+                        <option value="Dark magic">Dark magic</option>
+                        <option value="Time spells">Time spells</option>
+                    </select>
+                    <button>Add</button>
+                    <button>Cancel</button>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

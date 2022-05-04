@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <h1>Houses</h1>
+    </head>
+    <body>
+        <h3>Browse Houses</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>house_id</th>
+                    <th>house_name</th>
+                </tr>
+            </thead>  
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>House of Eldritch</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>House of Starfall </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>House of Brimstone</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>House of Gilded </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>House of Folio</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="insert">
+            <form method="POST" id="addHouse">
+                <h2>Add House</h2>
+                <fieldset class="option">
+                    <label>house_name <input type="text" name="house_name"/></label>
+                    <button>Add</button>
+                    <button>Cancel</button>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
