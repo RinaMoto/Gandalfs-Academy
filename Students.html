@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    
+</head>
+<h1>Students</h1>
+<a href="index.html">Home</a>  
+<a href="Houses.html">Houses</a> 
+<a href="Students_Has_Classes.html">Students_Has_Classes</a>
+<a href="Students_Has_Books.html">Students_Has_Books</a>
+<p>
+    Welcome to the classes page, where students can learn about all the classes available to them! Whether you are a 
+    potions master, a ritual specialist, or a brand new sorceress, Gandalf's has the classes for you.
+</p>
+<div id="select">
+    <table>
+        <tr>
+            <th>student_id</th>
+            <th>f_name</th>
+            <th>l_name</th>
+            <th>age</th>
+            <th>year</th>
+            <th>is_full_time</th>
+            <th>house_id</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Clark</td>
+            <td>Mollow</td>
+            <td>13</td>
+            <td>2</td>
+            <td>1</td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Miranda</td>
+            <td>Feldon</td>
+            <td>16</td>
+            <td>4</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Emily</td>
+            <td>Elwin</td>
+            <td>22</td>
+            <td>8</td>
+            <td>1</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Gavin</td>
+            <td>Holstrum</td>
+            <td>14</td>
+            <td>3</td>
+            <td>1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Marcus</td>
+            <td>West</td>
+            <td>18</td>
+            <td>6</td>
+            <td>0</td>
+            <td>5</td>
+        </tr>
+    </table>
+</div>
+<div id="insert">
+    <form method = "POST" id="addStudent">
+        <legend>Add Student</legend>
+        <fieldset class="options">
+            <label for="f_name">first name</label> <input type="text" name="f_name">
+            <label for="l_name">last name</label> <input type="text" name="l_name">
+            <label for="age">start time</label> <input type="text" name="age">
+            <label for="year">end time</label> <input type="text" name="year">
+            <label for="is_full_time">full time</label> <select name="is_full_time">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+            <label for="house_id">house</label> <select name="house_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">House of Eldritch</option>
+                <option value="2">House of Starfall</option>
+                <option value="3">House of Brimstone</option>
+                <option value="4">House of Gilded</option>
+                <option value="5">House of Folio</option>
+            </select>
+        </fieldset>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+</body>
+</html>
