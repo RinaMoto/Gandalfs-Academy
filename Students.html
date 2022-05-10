@@ -82,43 +82,18 @@
         </tr>
     </table>
 </div>
-<div id="insert">
+<div id="insert" style="display:inline-block">
     <form method = "POST" id="addStudent">
         <legend>Add Student</legend>
         <fieldset class="options">
-            <label for="f_name">first name</label> <input type="text" name="f_name">
-            <label for="l_name">last name</label> <input type="text" name="l_name">
-            <label for="age">age</label> <input type="text" name="age">
-            <label for="year">year</label> <input type="text" name="year">
-            <label for="is_full_time">full time</label> <select name="is_full_time">
+            <label for="f_name">first name</label> <br/><input type="text" name="f_name"><br/>
+            <label for="l_name">last name</label><br/> <input type="text" name="l_name"><br/>
+            <label for="age">age</label><br/> <input type="text" name="age"><br/>
+            <label for="year">year</label><br/> <input type="text" name="year"><br/>
+            <label for="is_full_time">full time</label><br/> <select name="is_full_time"><br/>
                 <option value="0">No</option>
                 <option value="1">Yes</option>
-            </select>
-            <label for="house_id">house</label> <select name="house_id">
-                <option value="0">&nbsp;</option>
-                <option value="1">House of Eldritch</option>
-                <option value="2">House of Starfall</option>
-                <option value="3">House of Brimstone</option>
-                <option value="4">House of Gilded</option>
-                <option value="5">House of Folio</option>
-            </select>
-        </fieldset>
-        <input type="submit" value="Submit">
-    </form>
-</div>
-<div id="search">
-    <form method = "POST" id="searchStudents">
-        <legend>Search Students</legend>
-        <fieldset class="options">
-            <label for="id">student_id</label> <input type="text" name="id">
-            <label for="f_name">first name</label> <input type="text" name="f_name">
-            <label for="l_name">last name</label> <input type="text" name="l_name">
-            <label for="age">age</label> <input type="text" name="age">
-            <label for="year">year</label> <input type="text" name="year">
-            <label for="is_full_time">full time</label> <select name="is_full_time">
-                <option value="0">No</option>
-                <option value="1">Yes</option>
-            </select>
+            </select><br/>
             <label for="house_id">house</label> <select name="house_id">
                 <option value="0">&nbsp;</option>
                 <option value="1">House of Eldritch</option>
@@ -129,6 +104,31 @@
             </select>
         </fieldset>
         <button type="submit">Add</button>
+    </form>
+</div>
+<div id="search" style="display:inline-block">
+    <form method = "POST" id="searchStudents">
+        <legend>Search Students</legend>
+        <fieldset class="options">
+            <label for="id">student_id</label><br/> <input type="text" name="id"><br/>
+            <label for="f_name">first name</label><br/> <input type="text" name="f_name"><br/>
+            <label for="l_name">last name</label><br/> <input type="text" name="l_name"><br/>
+            <label for="age">age</label><br/> <input type="text" name="age"><br/>
+            <label for="year">year</label> <br/><input type="text" name="year"><br/>
+            <label for="is_full_time">full time</label><br/> <select name="is_full_time">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select><br/>
+            <label for="house_id">house</label><br/> <select name="house_id">
+                <option value="0">&nbsp;</option>
+                <option value="1">House of Eldritch</option>
+                <option value="2">House of Starfall</option>
+                <option value="3">House of Brimstone</option>
+                <option value="4">House of Gilded</option>
+                <option value="5">House of Folio</option>
+            </select>
+        </fieldset>
+        <button type="submit">Search</button>
     </form>
 </div>
 </body>
