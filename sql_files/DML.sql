@@ -70,6 +70,11 @@ SELECT book_id FROM Books;
 -- delete a book 
 DELETE FROM Book WHERE id = :book_id_selected_from_book_page;
 
+--update a book
+UPDATE Book
+SET title = :title_update_input, cost = :cost_update_input
+WHERE book_id = :book_id_from_dropdown_update
+
 --Houses
 -- Get all house_id and their house_name to populate the table in the Houses page
 SELECT house_id, house_name FROM Houses;
