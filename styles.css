@@ -71,13 +71,22 @@ h3 {
     text-align: center;
     margin: 2rem;
 }
-button {
-    margin-top: 1rem;
-}
 
 p {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2rem;
+}
+
+button {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #c4b1c9;
+}
+
+button:hover {
+    filter: brightness(85%);
 }
