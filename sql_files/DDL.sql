@@ -42,7 +42,8 @@ CREATE TABLE Professors
     house_id int,
     PRIMARY KEY (professor_id),
     FOREIGN KEY (house_id)
-    REFERENCES Houses(house_id),
+    REFERENCES Houses(house_id)
+    ON DELETE NULL,
     UNIQUE(f_name, l_name)
 );
 
