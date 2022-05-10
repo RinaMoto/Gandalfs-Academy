@@ -1,5 +1,38 @@
 table, th, td {
+    text-align: center;
     border: 1px solid;
     margin: 2rem;
     padding: .5rem;
+}
+
+table {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+nav {
+    padding: 1rem;
+    background-color: #95b5d2;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+}
+
+nav a:hover {
+    background-color: #547192;
+}
+
+form {
+    margin: 2rem;
+    padding: 2rem;
+    width: fit-content;
+}
+
+fieldset {
+    width: 100%;
+    margin-right: 2rem;
 }
