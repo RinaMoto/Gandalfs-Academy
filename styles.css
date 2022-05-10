@@ -34,5 +34,23 @@ form {
 
 fieldset {
     width: 100%;
-    margin-right: 2rem;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    text-align: center;
+    color: #c4b1c9;
+}
+
+h3 {
+    text-align: center;
+    margin: 2rem;
+}
+button {
+    margin-top: 1rem;
 }
