@@ -33,12 +33,17 @@ INSERT INTO Classes (class_name, description, schedule_id, start_time, end_time,
 -- To get all information about students to display in table:
 SELECT student_id, f_name AS first name, l_name AS last name, age, year, is_full_time, Houses.house_name AS house FROM Students INNER JOIN Houses ON Students.house_id = House.house_id;
 
--- To get house_id, house_name from Houses for dropdown in creation form:
+-- To get house_id, house_name from Houses for dropdown in creation and search form:
 SELECT house_id, house_name FROM Houses;
 
 -- To create a new student:
 INSERT INTO Students (f_name, l_name, age, year, is_full_time, house_id)
   VALUES (:f_name_input, :l_name_input, :age_input, :year_input, :is_full_time_from_dropdown_input, :house_id_from_dropdown_input);
+
+--to search a student:
+SELECT student_id, f_name AS first name, l_name AS last name, age, year, is_full_time, Houses.house_name AS house FROM Students INNER JOIN Houses ON Students.house_id = House.house_id
+WHERE Students.f_name = :f_name_from_search_input, Students.l_name = :l_name_from_search_input, Students.age = :age_from_seach_input,
+Students.year = :year_from_search_input, Students.is_full_time = :is_full_time_from_search_input, Students.house_id = :house_id_from_search_dropdown_input;   
 
 --Students_Has_Classes
 
