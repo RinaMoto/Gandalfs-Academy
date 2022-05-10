@@ -1,7 +1,7 @@
 
 -- Professors
 -- To display all information about professors in table:
-SELECT Professors.professor_id, f_name, l_name, age, Houses.house_name AS house from Professors INNER JOIN Houses ON Professors.house_id = Houses.house_id;
+SELECT Professors.professor_id, f_name AS first name, l_name AS last name, age, Houses.house_name AS house from Professors INNER JOIN Houses ON Professors.house_id = Houses.house_id;
 
 -- To get house_id and name for insert dropdown menu
 SELECT house_id, house_name FROM Houses;
@@ -31,7 +31,7 @@ INSERT INTO Classes (class_name, description, schedule_id, start_time, end_time,
 -- Students
 
 -- To get all information about students to display in table:
-SELECT student_id, f_name, l_name, age, year, is_full_time, Houses.house_name AS house FROM Students INNER JOIN Houses ON Students.house_id = House.house_id;
+SELECT student_id, f_name AS first name, l_name AS last name, age, year, is_full_time, Houses.house_name AS house FROM Students INNER JOIN Houses ON Students.house_id = House.house_id;
 
 -- To get house_id, house_name from Houses for dropdown in creation form:
 SELECT house_id, house_name FROM Houses;
@@ -73,7 +73,7 @@ DELETE FROM Book WHERE id = :book_id_selected_from_book_page;
 --update a book
 UPDATE Book
 SET title = :title_update_input, cost = :cost_update_input
-WHERE book_id = :book_id_from_dropdown_update
+WHERE book_id = :book_id_from_dropdown_update;
 
 --Houses
 -- Get all house_id and their house_name to populate the table in the Houses page
@@ -97,9 +97,30 @@ SELECT schedule_id, meets_monday AS Monday, meets_tuesday AS Tuesday, meets_wedn
 
 --Students_Has_Books
 -- get all id, student_id and book_id for the Students_Has_Books page
-SELECT id, CONCAT(Students.f_name, ' ', Students.l_name) AS student, book_id as book FROM Students_Has_Books
-INNER JOIN Students ON Students_Has_Books.student_id = Students.student_id;
+SELECT id, CONCAT(Students.f_name, ' ', Students.l_name) AS student, Books.title as book FROM Students_Has_Books
+INNER JOIN Students ON Students_Has_Books.student_id = Students.student_id INNER JOIN Books ON Students_Has_Books.book_id = Books.book_id;         
+
+--to get the information about students for the creation dropdown menu:
+SELECT student_id, f_name, l_name FROM Students;
+
+--to get the information about books for the creation dropdown menu:
+SELECT book_id, title FROM Books;
+
+--give a student a book:
+INSERT INTO Students_Has_Books (student_id, book_id)
+VALUES (:student_id_from_dropdown_input, book_id_from_dropdown_input);
 
 -- Books_Has_Spells
 -- get all id, book_id, and spell_id for the Books_Has_Spells
-SELECT id, book_id, spell_id FROM Books_Has_Spells
+SELECT id, Books.title AS book, Spells.name AS spell FROM Books_Has_Spells 
+INNER JOIN Books ON Books_Has_Spells.book_id = Books.book_id INNER JOIN Spells ON Books_Has_Spells.spell_id = Spells.spell_id;
+
+--to get the information about books for the creation dropdown menu:
+SELECT book_id, title FROM Books;
+
+--to get the information about spells for the creation dropdown menu:
+SELECT spell_id, name FROM Spells;
+
+--to add a spell to a book:
+INSERT INTO Books_Has_Spells (book_id, spell_id)
+VALUES (:book_id_from_dropdown_input, :spell_id_from_dropdown_input);
