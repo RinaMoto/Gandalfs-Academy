@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <h1>Class_Schedules</h1>
+        <nav>
+            <a href ='/'>Home</a>
+            <a href ='/Books'>Books</a>
+            <a href ='/Students'>Students</a>
+            <a href ='/Professors'>Professors</a>
+            <a href ='/Classes'>Classes</a>
+            <a href ='/Class_Schedules'>Class_Schedules</a>
+            <a href ='/Houses'>Houses</a>
+            <a href ='/Spells'>Spells</a>
+            <a href ='/Students_Has_Books'>Students_Has_Books</a>
+            <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+            <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
+    </head>
+    <body>
+        <h3>Browse Class Schedules</h3>
+        <table id="schedule-table">
+            <thead>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th>delete</th>
+            </thead>  
+            <tbody>
+               {{#each data}}
+                <tr data-value={{this.schedule_id}}>>
+                    <td>{{this.schedule_id}}</td>
+                    <td>{{this.meets_monday}}</td>
+                    <td>{{this.meets_tuesday}}</td>
+                    <td>{{this.meets_wednesday}}</td>
+                    <td>{{this.meets_thursday}}</td>
+                    <td>{{this.meets_friday}}</td>
+                    <td><button onclick="deleteSchedule({{this.schedule_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_schedule.js"></script>
+        
+        <div id = "add-class-schedule-ajax">
+        {{!-- Form to add a record to the table  --}}
+        <form id="add-class-schedule-ajax">
+            <fieldset>
+                 <legend>Adding a Schedule With AJAX</legend>
+                <legend>To add a new schedule, please enter its information below and click 'Submit'!</legend>
+                <label for="input-meets-monday">Meets Monday: </label>
+                <select name="input-meets-monday" id="mySelectMonday">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+
+                
+                <label for="input-meets-tuesday">Meets Tuesday: </label>
+                <select name="input-meets-tuesday" id="mySelectTuesday">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+
+                <label for="input-meets-wednesday">Meets Wednesday: </label>
+                <select name="input-meets-wednesday" id="mySelectWednesday">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+
+                <label for="input-meets-thursday">Meets Thursday: </label>
+                <select name="input-meets-thursday" id="mySelectThursday">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+
+                <label for="input-meets-friday">Meets Friday: </label>
+                <select name="input-meets-friday" id="mySelectFriday">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+
+            </fieldset>
+            <button type="submit">Add</button>
+        </form>
+        <script src="./js/add_schedule.js"></script>
+    </body>
+</html>

@@ -1,0 +1,59 @@
+
+    <head>
+        <link rel="stylesheet" href="styles.css" type="text/css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <h1>Books_Has_Spells</h1>
+        <nav>
+            <a href ='/'>Home</a>
+            <a href ='/Books'>Books</a>
+            <a href ='/Students'>Students</a>
+            <a href ='/Professors'>Professors</a>
+            <a href ='/Classes'>Classes</a>
+            <a href ='/Class_Schedules'>Class_Schedules</a>
+            <a href ='/Houses'>Houses</a>
+            <a href ='/Spells'>Spells</a>
+            <a href ='/Students_Has_Books'>Students_Has_Books</a>
+            <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+            <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
+    </head>
+    <body>
+        <h3>Browse Books_Has_Spellsh3>
+        <table>
+            <thead>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+            </thead>  
+            <tbody>
+               {{#each data}}
+                <tr data-value={{this.books_has_spells_id}}>>
+                    <td>{{this.books_has_spells_id}}</td>
+                    <td>{{this.book_id}}</td>
+                    <td>{{this.spell_id}}</td>
+                    <td><button onclick="deleteBooksHasSpells({{this.books_has_spells_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            <th>delete</th>
+            </tbody>
+        </table>
+        
+        <div id = "add-books-has-spells">
+        {{!-- Form to add a record to the table  --}}
+        <h2>Adding a students has book relationship With AJAX</h2>
+        <p>To add a new book, please enter its information below and click 'Submit'!</p>
+        <form id="add-books-has-spells-ajax">
+            <label for="input-book-id">book id: </label>
+            <input type="text" name="input-book-id" id="input-book-id">
+            
+            <label for="input-spell-id">spell id: </label>
+            <input type="text" name="input-spell-id" id="input-spell-id">
+
+            <input type="submit">
+        </form>
+    </body>

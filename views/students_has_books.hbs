@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="styles.css" type="text/css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <h1>Students_Has_Books</h1>
+        <nav>
+            <a href ='/'>Home</a>
+            <a href ='/Books'>Books</a>
+            <a href ='/Students'>Students</a>
+            <a href ='/Professors'>Professors</a>
+            <a href ='/Classes'>Classes</a>
+            <a href ='/Class_Schedules'>Class_Schedules</a>
+            <a href ='/Houses'>Houses</a>
+            <a href ='/Spells'>Spells</a>
+            <a href ='/Students_Has_Books'>Students_Has_Books</a>
+            <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+            <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
+    </head>
+    <body>
+        <h3>Browse Students_has_books</h3>
+        <table id="students-has-books-table">
+            <thead>
+                {{#each data.[0]}}
+                <th>
+                    {{@key}}
+                </th>
+                {{/each}}
+                <th>delete</th>
+            </thead>  
+            <tbody>
+               {{#each data}}
+                <tr data-value={{this.id}}>>
+                    <td>{{this.id}}</td>
+                    <td>{{this.student}}</td>
+                    <td>{{this.book}}</td>
+                    <td><button onclick="deleteStudentsHasBooks({{this.id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_students_has_books.js"></script>
+        
+        <div id = "add-students-has-books">
+        {{!-- Form to add a record to the table  --}}
+        <form id="add-students-has-books-ajax">
+            <fieldset>
+                <legend>Adding a relationship between students and books With AJAX</legend>
+                <legend>To add a new relationship, please enter its information below and click 'Submit'!</legend>
+                <label for="input-selectStudent">Student to add: </label>
+                <select name="input-selectStudent" id="mySelectStudent">
+                    <option value="test">Select a Student</option>
+                    {{#each students}}
+                    <option value="{{this.student_id}}">{{this.f_name}} {{this.l_name}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="input-selectBook">Title of Book to add: </label>
+                <select name="input-selectBook" id="mySelectBook">
+                    <option value="test">Select a Book</option>
+                    {{#each books}}
+                    <option value="{{this.book_id}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
+            </fieldset>
+            <button type="submit">Add</button>
+        </form>
+        <script src="./js/add_students_has_books.js"></script>
+    </body>
+</html>

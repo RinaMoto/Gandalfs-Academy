@@ -7,7 +7,7 @@
   <a href ='/Students'>Students</a>
   <a href ='/Professors'>Professors</a>
   <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Shedules'>Class_Schedules</a>
+  <a href ='/Class_Schedules'>Class_Schedules</a>
   <a href ='/Houses'>Houses</a>
   <a href ='/Spells'>Spells</a>
   <a href ='/Students_Has_Books'>Students_Has_Books</a>
@@ -16,15 +16,8 @@
 </nav>
 
 <p>Welcome to the Books page, where anyone can learn magic!</p>
-
-{{!-- Create a table --}}
-<table id="book-table">>
-
-    {{!-- Header section --}}
+<table id="books-table">
     <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
         <tr>
             {{#each data.[0]}}
             <th>
@@ -53,54 +46,55 @@
 
 <!-- /views/books.hbs -->
 
-<div id = add-book>
+<div id = "add-book">
 {{!-- Form to add a record to the table  --}}
-<h2>Adding a Book With AJAX</h2>
-<p>To add a new book, please enter its information below and click 'Submit'!</p>
-<form id="add-book-form-ajax">
-    <label for="input-title">Title: </label>
-    <input type="text" name="input-title" id="input-title">
-    
-    <label for="input-cost">Cost: </label>
-    <input type="text" name="input-cost" id="input-cost">
-
-    <input type="submit">
-</form>
+    <form id="add-book-form-ajax">
+        <fieldset>
+            <legend>Adding a Book With AJAX</legend>
+            <legend>To add a new book, please enter its information below and click 'Submit'!</legend>
+            <label for="input-title">Title: </label>
+            <input type="text" name="input-title" id="input-title">
+            
+            <label for="input-cost"> Cost: </label>
+            <input type="text" name="input-cost" id="input-cost">
+        </fieldset>
+        <button type="submit">Add</button>
+    </form>
 
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_book.js"></script>
 </div>
 
-<h2>Search Using an HTML Form</h2>
-<p>Search by title using the field below. Partial titles will be accepted!</p>
 <form id="search-title-html" method='GET' action='/Books'>
-    <label for="input-title">Search by Title: </label>
-    <input type="text" name="title" id="input-title-html-search">
-    
-    <input type="submit">
-    <a href='/Books'><button>Reset</button></a>
+        <fieldset>
+            <legend>Search Using an HTML Form</legend>
+            <legend>Search by title using the field below. Partial titles will be accepted!</legend>
+            <label for="input-title">Search by Title: </label>
+            <input type="text" name="title" id="input-title-html-search">   
+        </fieldset>
+        <button type="submit">Submit</button>
+        <a href='/Books'><button>Reset</button></a>
 </form>
 
-<h2>Updating A Book Form</h2>
-<p>To update a specific book's title or cost select its title from the drop-down menu on the left and enter the updated information in the appropriate fields</p>
 <form id="update-book-form-ajax">
+    <fieldset>
+        <legend>Updating A Book Form</legend>
+        <legend>To update a specific book's title or cost select its title from the drop-down menu on the left and enter the updated information in the appropriate fields</legend>
+        <label for="input-selectTitle">Title of Book to Update: </label>
+        <select name="input-selectTitle" id="mySelect">
+            <option value="test">Select a Title</option>
+            {{#each data}}
+            <option value="{{this.book_id}}">{{this.title}}</option>
+            {{/each}}
+        </select>
 
-    <label for="input-selectTitle">Title of Book to Update: </label>
-    <select name="input-selectTitle" id="mySelect">
-        <option value="test">Select a Title</option>
-        {{#each data}}
-        <option value="{{this.book_id}}">{{this.title}}</option>
-        {{/each}}
-    </select>
+        <label for="input-title-update">New Title: </label>
+        <input type="text" name="input-title-update" id="input-title-update">
 
-    <label for="input-title-update">New Title: </label>
-    <input type="text" name="input-title-update" id="input-title-update">
-
-    <label for="input-cost-update">New Cost: </label>
-    <input type="text" name="input-cost-update" id="input-cost-update">
-  
-    <input type="submit">
-
+        <label for="input-cost-update">New Cost: </label>
+        <input type="text" name="input-cost-update" id="input-cost-update">
+    </fieldset>
+    <button type="submit">Update</button>
 </form>
 
 <script src="./js/update_book.js"></script>

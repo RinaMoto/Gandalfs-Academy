@@ -1,29 +1,35 @@
 // Get the objects we need to modify
-let addBookForm = document.getElementById('add-book-form-ajax');
+let addProfessorForm = document.getElementById('add-professor-form-ajax');
 
 // Modify the objects we need
-addBookForm.addEventListener("submit", function (e) {
+addProfessorForm.addEventListener("submit", function (e) {
     
     // Prevent the form from submitting
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputTitle = document.getElementById("input-title");
-    let inputCost = document.getElementById("input-cost");
+    let inputF_Name = document.getElementById("input-f_name");
+    let inputL_Name = document.getElementById("input-l_name");
+    let inputAge = document.getElementById("input-age");
+    let inputHouse = document.getElementById("input-house");
 
     // Get the values from the form fields
-    let titleValue = inputTitle.value;
-    let costValue = inputCost.value;
+    let f_nameValue = inputF_Name.value;
+    let l_nameValue = inputL_Name.value;
+    let ageValue = inputAge.value;
+    let houseValue = inputHouse.value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        title: titleValue,
-        cost: costValue
+        f_name: f_nameValue,
+        l_name: l_nameValue,
+        age: ageValue,
+        house_id: houseValue
     }
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/add-book-ajax", true);
+    xhttp.open("POST", "/add-professor-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
@@ -33,8 +39,10 @@ addBookForm.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            inputTitle.value = '';
-            inputCost.value = '';
+            inputF_Name.value = '';
+            inputL_Name.value = '';
+            inputAge.value = '';
+            inputHouse.value = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")
@@ -46,14 +54,11 @@ addBookForm.addEventListener("submit", function (e) {
 
 })
 
-
 // Creates a single row from an Object representing a single record from 
-// bsg_people
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Professors
 addRowToTable = (data) => {
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("books-table");
+    let currentTable = document.getElementById("professor-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -65,43 +70,40 @@ addRowToTable = (data) => {
     // Create a row and 2 cells
     let row = document.createElement("TR");
     let idCell = document.createElement("TD");
-    let titleCell = document.createElement("TD");
-    let costCell = document.createElement("TD");
+    let f_nameCell = document.createElement("TD");
+    let l_nameCell = document.createElement("TD");
+    let ageCell = document.createElement("TD");
+    let house_idCell = document.createElement("TD");
   
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    idCell.innerText = newRow.book_id;
-    titleCell.innerText = newRow.title;
-    costCell.innerText = newRow.cost;
+    idCell.innerText = newRow.professor_id;
+    f_nameCell.innerText = newRow.f_name;
+    l_nameCell.innerText = newRow.l_name;
+    ageCell.innerText = newRow.age;
+    house_idCell.innerText = newRow.house_id;
     
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function(){
-        deleteBook(this);
+        deleteProfessor(this);
     };
-
-
-
 
     // Add the cells to the row 
     row.appendChild(idCell);
-    row.appendChild(titleCell);
-    row.appendChild(costCell);
+    row.appendChild(f_nameCell);
+    row.appendChild(l_nameCell);
+    row.appendChild(ageCell);
+    row.appendChild(house_idCell);
     row.appendChild(deleteCell);
     
     // Add a custom row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.book_id);
+    row.setAttribute('data-value', newRow.professor_id);
 
     // Add the row to the table
     currentTable.appendChild(row);
     
-    // Find drop down menu, create a new option, fill data in the option
-    // then append option to drop down menu so newly created rows via ajax will be found in it without needing a refresh
-    let selectMenu = document.getElementById("mySelect");
-    let option = document.createElement("option");
-    option.text = newRow.title;
-    option.value = newRow.book_id;
-    selectMenu.add(option);
+   
     document.location.reload(true);
 }

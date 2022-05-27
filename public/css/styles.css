@@ -33,13 +33,15 @@ nav a:hover {
 }
 
 form {
-    margin: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
     padding: 2rem;
     width: fit-content;
 }
 
 fieldset {
-    dispaly: flex;
+    display: inline-block;
     border: 1px solid #743414;
     padding: 2rem;
     width: 75%;
