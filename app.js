@@ -277,9 +277,9 @@ app.get('/Professors', function(req, res)
 
 app.get('/Students_Has_Classes', function(req, res)
 {
-    let query1 = "SELECT * FROM Students_Has_Classes;";
-    let query2 = "SELECT * FROM Classes;";
-    let query3 = "SELECT * FROM Students";
+    let query1 = "SELECT Students_Has_Classes.id, Students_Has_Classes.student_id as student, Students_Has_Classes.class_id as class FROM Students_Has_Classes GROUP BY Students_Has_Classes.id;";
+    let query2 = "SELECT Classes.class_id, Classes.class_name FROM Classes;";
+    let query3 = "SELECT Students.student_id, Students.f_name, Students.l_name FROM Students";
 
     // Run the 1st query
     db.pool.query(query1, function(error, rows, fields){
@@ -319,10 +319,63 @@ app.get('/Students_Has_Classes', function(req, res)
 
                 // Overwrite the house ID with the name of the house in the houses object
                 students_has_classes = students_has_classes.map(students_has_classes => {
-                    return Object.assign(students_has_classes, {class: classesmap[students_has_classes.class_name]}, {student: studentmap[students_has_classes.f_name]})
+                    return Object.assign(students_has_classes, {class: classesmap[students_has_classes.class]}, {student: studentmap[students_has_classes.student]})
                 })
 
                 return res.render('students_has_classes', {data: students_has_classes, classes: classes, students: students});
+            })
+        })
+    })
+});
+
+app.get('/Books_Has_Spells', function(req, res)
+{
+    let query1 = "SELECT Books_Has_Spells.id, Books_Has_Spells.book_id as book, Books_Has_Spells.spell_id as spell FROM Books_Has_Spells GROUP BY Books_Has_Spells.id;";
+    let query2 = "SELECT Books.book_id, Books.title as book FROM Books;";
+    let query3 = "SELECT Spells.spell_id, Spells.spell_name as spell FROM Spells";
+
+    // Run the 1st query
+    db.pool.query(query1, function(error, rows, fields){
+        
+        // Save the classes
+        let books_has_spells = rows;
+        
+        // Run the second query
+        db.pool.query(query2, (error, rows, fields) => {
+            
+            // Save the houses
+            let books = rows;
+            
+            //run the third query
+            db.pool.query(query3, (error, rows, fields) => {
+
+                //save the books
+                let spells = rows;
+
+                // Construct an object for reference in the table
+                // Array.map is awesome for doing something with each
+                // element of an array.
+                let booksmap = {}
+                books.map(book => {
+                    let book_id = parseInt(book.book_id, 10);
+
+                    booksmap[book_id] = book["book"];
+                })
+
+                //do the same for the other FK:
+                let spellsmap = {}
+                spells.map(spell => {
+                    let spell_id = parseInt(spell.spell_id, 10);
+
+                    spellsmap[spell_id] = spell["spell"];
+                })
+
+                // Overwrite the house ID with the name of the house in the houses object
+                books_has_spells = books_has_spells.map(books_has_spells => {
+                    return Object.assign(books_has_spells, {book: booksmap[books_has_spells.book]}, {spell: spellsmap[books_has_spells.spell]})
+                })
+
+                return res.render('books_has_spells', {data: books_has_spells, books: books, spells: spells});
             })
         })
     })
@@ -688,6 +741,90 @@ app.post('/add-professor-ajax', function(req, res)
     })
 });
 
+app.post('/add-students-has-classes-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Students_Has_Classes (student_id, class_id)
+      VALUES(${data.student}, ${data.class})`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Students
+            query2 = `SELECT Students_Has_Classes.id, Students_Has_Classes.class_id as class, Students_Has_Classes.student_id as student FROM Students_Has_Classes LEFT JOIN
+            Classes ON Students_Has_Classes.class_id = Classes.class_id LEFT JOIN Students ON Students_Has_Classes.student_id = Students.student_id GROUP BY Students_Has_Classes.id;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+app.post('/add-books-has-spells-ajax', function(req, res) 
+{
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Books_Has_Spells (book_id, spell_id)
+      VALUES(${data.book}, ${data.spell})`;
+    db.pool.query(query1, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If there was no error, perform a SELECT * on Students
+            query2 = `SELECT Books_Has_Spells.id, Books_Has_Spells.book_id as book, Books_Has_Spells.spell_id as spell FROM Books_Has_Spells LEFT JOIN
+            Books ON Books_Has_Spells.book_id = Books.book_id LEFT JOIN Spells ON Books_Has_Spells.book_id = Spells.spell_id GROUP BY Books_Has_Spells.id;`;
+            db.pool.query(query2, function(error, rows, fields){
+
+                // If there was an error on the second query, send a 400
+                if (error) {
+                    
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                // If all went well, send the results of the query back.
+                else
+                {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+});
+
+
+
 /* 
     UPDATE routes
 */
@@ -899,7 +1036,24 @@ app.delete('/delete-professor-ajax/', function(req,res,next)
         }
   );
 
-app.delete('/delete-students_has_classes-ajax/', function(req,res,next)
+app.delete('/delete-books-has-spells-ajax/', function(req,res,next)
+{
+    let data = req.body;
+    let booksHasSpellsID = parseInt(data.id);
+    let deleteBooksHasSpells= `DELETE FROM Books_Has_Spells WHERE id = ?`;
+    
+        db.pool.query(deleteBooksHasSpells, [booksHasSpellsID], function(error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.sendStatus(204);
+                }
+            })
+        }
+);
+
+app.delete('/delete-books-has-spells-ajax/', function(req,res,next)
 {
     let data = req.body;
     let studentsHasClassesID = parseInt(data.id);

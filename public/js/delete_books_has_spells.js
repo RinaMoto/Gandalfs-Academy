@@ -7,22 +7,22 @@ but all other steps used as well.
 */
 
 // code for deleteStudent using regular javascript/xhttp
-function deleteStudentsHasClasses(studentsHasClassesID) {
+function deleteBooksHasSpells(booksHasSpellsID) {
     // Put our data we want to send in a javascript object
     let data = {
-        id: studentsHasClassesID
+        id: booksHasSpellsID
     };
     
     // Setup our AJAX request
     var xhttp = new XMLHttpRequest();
-    xhttp.open("DELETE", "/delete-students-has-classes-ajax", true);
+    xhttp.open("DELETE", "/delete-books-has-spells-ajax", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 204) {
 
             // Add the new data to the table
-            deleteRow(studentsHasClassesID);
+            deleteRow(booksHasSpellsID);
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
@@ -32,14 +32,14 @@ function deleteStudentsHasClasses(studentsHasClassesID) {
     xhttp.send(JSON.stringify(data));
 }
 
-function deleteRow(studentsHasClassesID){
+function deleteRow(booksHasSpellsID){
 
-    let table = document.getElementById("students-has-classes-table");
+    let table = document.getElementById("books-has-spells-table");
     console.log(table);
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
-       if (table.rows[i].getAttribute("data-value") == studentsHasClassesID) {
+       if (table.rows[i].getAttribute("data-value") == booksHasSpellsID) {
             table.deleteRow(i);
             break;
        }
