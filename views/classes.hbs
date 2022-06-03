@@ -1,134 +1,138 @@
 <!-- classes.hbs -->
-<h1>Classes</h1>
+<html>
+    <head>
+        <h1>Classes</h1>
 
-<nav>
-  <a href ='/'>Home</a>
-  <a href ='/Books'>Books</a>
-  <a href ='/Students'>Students</a>
-  <a href ='/Professors'>Professors</a>
-  <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Schedules'>Class_Schedules</a>
-  <a href ='/Houses'>Houses</a>
-  <a href ='/Spells'>Spells</a>
-  <a href ='/Students_Has_Books'>Students_Has_Books</a>
-  <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
-  <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
-</nav>
+        <nav>
+            <a href ='/'>Home</a>
+            <a href ='/Books'>Books</a>
+            <a href ='/Students'>Students</a>
+            <a href ='/Professors'>Professors</a>
+            <a href ='/Classes'>Classes</a>
+            <a href ='/Class_Schedules'>Class_Schedules</a>
+            <a href ='/Houses'>Houses</a>
+            <a href ='/Spells'>Spells</a>
+            <a href ='/Students_Has_Books'>Students_Has_Books</a>
+            <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+            <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
 
-<p>Gandalf's Academy is proud to offer the finest courses in magical education, from introductions to basic magics to the most advanced examinations of 
-    enchantments and alchemy. Gandalf's sets itself apart from other magical institutions with both the quality and breadth of its available courses.
-</p>
+        <p>Gandalf's Academy is proud to offer the finest courses in magical education, from introductions to basic magics to the most advanced examinations of 
+            enchantments and alchemy. Gandalf's sets itself apart from other magical institutions with both the quality and breadth of its available courses. &#127979;
+        </p> 
+    </head>
+    <body>
+        {{!-- Create a table --}}
+        <table id="class-table">
+            {{!-- Header section --}}
+            <thead>
 
-{{!-- Create a table --}}
-<table id="class-table">
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                    <th>delete</th>
+                </tr>
+            </thead>
 
-    {{!-- Header section --}}
-    <thead>
+            {{!-- Body section --}}
+            <tbody>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
+                {{!-- For each row, print the class_id, class_name, description, schedule_id, start_time, end_time, class_size, professor_id,
+                book_id, cost, class_year, and delete button in order --}}
+                {{#each data}}
+                <tr data-value={{this.class_id}}>
+                    <td>{{this.class_id}}</td>
+                    <td>{{this.class_name}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.schedule_id}}</td>
+                    <td>{{this.start_time}}</td>
+                    <td>{{this.end_time}}</td>
+                    <td>{{this.class_size}}</td>
+                    <td>{{this.professor}}</td>
+                    <td>{{this.book}}</td>
+                    <td>{{this.cost}}</td>
+                    <td>{{this.class_year}}</td>
+                    <td><button onclick="deleteClass({{this.class_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_class.js"></script>
 
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the class_id, class_name, description, schedule_id, start_time, end_time, class_size, professor_id,
-        book_id, cost, class_year, and delete button in order --}}
-        {{#each data}}
-        <tr data-value={{this.class_id}}>
-            <td>{{this.class_id}}</td>
-            <td>{{this.class_name}}</td>
-            <td>{{this.description}}</td>
-            <td>{{this.schedule_id}}</td>
-            <td>{{this.start_time}}</td>
-            <td>{{this.end_time}}</td>
-            <td>{{this.class_size}}</td>
-            <td>{{this.professor}}</td>
-            <td>{{this.book}}</td>
-            <td>{{this.cost}}</td>
-            <td>{{this.class_year}}</td>
-            <td><button onclick="deleteClass({{this.class_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_class.js"></script>
-
-<form id="search-class_name-html" method='GET' action='/Classes'>
-        <fieldset>
-            <legend>Search Using an HTML Form</legend>
-            <legend>Search by class name using the field below. Partial names will be accepted!</legend>
-            <label for="input-class_name">Search by Class Name: </label>
-            <input type="text" name="class_name" id="input-class_name-html-search">
-        </fieldset>
-        <button type="submit">Search</button>
-        <a href='/Classes'><button>Reset</button></a>
-</form>
+        <form id="search-class_name-html" method='GET' action='/Classes'>
+                <fieldset>
+                    <legend>Search Using an HTML Form</legend>
+                    <legend>Search by class name using the field below. Partial names will be accepted!</legend>
+                    <label for="input-class_name">Search by Class Name: </label>
+                    <input type="text" name="class_name" id="input-class_name-html-search">
+                </fieldset>
+                <button type="submit">Search</button>
+                <a href='/Classes'><button>Reset</button></a>
+        </form>
 
 
-<div id = add-class>
-{{!-- Form to add a record to the table  --}}
-<form id="add-class-form-ajax">
-    <fieldset>
-         <legend>Adding a Class With AJAX</legend>
-        <legend>To add a new class, please enter its information below and click 'Submit'!</legend>
-        <label for="input-class_name">Class Name: </label>
-        <input type="text" name="input-class_name" id="input-class_name">
+        <div id = add-class>
+        {{!-- Form to add a record to the table  --}}
+        <form id="add-class-form-ajax">
+            <fieldset>
+                <legend>Adding a Class With AJAX</legend>
+                <legend>To add a new class, please enter its information below and click 'Submit'!</legend>
+                <label for="input-class_name">Class Name: </label>
+                <input type="text" name="input-class_name" id="input-class_name">
 
-        <label for="input-description">Description: </label>
-        <input type="text" name="input-description" id="input-description">
-        
-        <label for="input-schedule_id">Schedule: </label>
-        <select name="input-schedule_id" id="input-schedule_id">
-            <option value="">Select a Schedule</option>
-            {{#each schedules}}
-            <option value="{{this.schedule_id}}">M/T/W/Th/F = {{this.meets_monday}}/{{this.meets_tuesday}}/{{this.meets_wednesday}}/{{this.meets_thursday}}/{{this.meets_friday}}</option>
-            {{/each}}
-        </select>
+                <label for="input-description">Description: </label>
+                <input type="text" name="input-description" id="input-description">
+                
+                <label for="input-schedule_id">Schedule: </label>
+                <select name="input-schedule_id" id="input-schedule_id">
+                    <option value="">Select a Schedule</option>
+                    {{#each schedules}}
+                    <option value="{{this.schedule_id}}">M/T/W/Th/F = {{this.meets_monday}}/{{this.meets_tuesday}}/{{this.meets_wednesday}}/{{this.meets_thursday}}/{{this.meets_friday}}</option>
+                    {{/each}}
+                </select>
 
-        <label for="input-start_time">Start Time: Enter 00:00:00 Format </label>
-        <input type="text" name="input-start_time" id="input-start_time">
+                <label for="input-start_time">Start Time: Enter 00:00:00 Format </label>
+                <input type="text" name="input-start_time" id="input-start_time">
 
-        <label for="input-end_time">End Time: Enter 00:00:00 Format </label>
-        <input type="text" name="input-end_time" id="input-end_time">
+                <label for="input-end_time">End Time: Enter 00:00:00 Format </label>
+                <input type="text" name="input-end_time" id="input-end_time">
 
-        <label for="input-class_size">Class Size: </label>
-        <input type="text" name="input-class_size" id="input-class_size">
+                <label for="input-class_size">Class Size: </label>
+                <input type="text" name="input-class_size" id="input-class_size">
 
-        <label for="input-professor_id">Professor: </label>
-        <select name="input-professor_id" id="mySelect-professor_id">
-            <option value="">Select a Professor</option>
-            {{#each professors}}
-            <option value="{{this.professor_id}}">{{this.professor}}</option>
-            {{/each}}
-        </select>
+                <label for="input-professor_id">Professor: </label>
+                <select name="input-professor_id" id="mySelect-professor_id">
+                    <option value="">Select a Professor</option>
+                    {{#each professors}}
+                    <option value="{{this.professor_id}}">{{this.professor}}</option>
+                    {{/each}}
+                </select>
 
-        <label for="input-book_id">Textbook: </label>
-        <select name="input-book_id" id="mySelect-book_id">
-            <option value="">Select a Book</option>
-            {{#each books}}
-            <option value="{{this.book_id}}">{{this.title}}</option>
-            {{/each}}
-        </select>
+                <label for="input-book_id">Textbook: </label>
+                <select name="input-book_id" id="mySelect-book_id">
+                    <option value="">Select a Book</option>
+                    {{#each books}}
+                    <option value="{{this.book_id}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
 
-        <label for="input-cost">Cost: </label>
-        <input type="text" name="input-cost" id="input-cost">
+                <label for="input-cost">Cost: </label>
+                <input type="text" name="input-cost" id="input-cost">
 
-        <label for="input-class_year">Class Year: </label>
-        <input type="text" name="input-class_year" id="input-class_year">
-    </fieldset>
-    <button type="submit">Add</button>
-</form>
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_class.js"></script>
-</div>
+                <label for="input-class_year">Class Year: </label>
+                <input type="text" name="input-class_year" id="input-class_year">
+            </fieldset>
+            <button type="submit">Add</button>
+        </form>
+        {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+        <script src="./js/add_class.js"></script>
+        </div>
 
-{{!-- NO UPDATE FOR Classes --}}
+        {{!-- NO UPDATE FOR Classes --}}
+    </body>
+</html>

@@ -22,7 +22,7 @@
         </nav>
     </head>
     <body>
-        <h3>Browse Students_has_books</h3>
+        <p>Students may purchase books from Gandalf's library</p>
         <table id="students-has-books-table">
             <thead>
                 {{#each data.[0]}}
@@ -34,7 +34,7 @@
             </thead>  
             <tbody>
                {{#each data}}
-                <tr data-value={{this.id}}>>
+                <tr data-value={{this.id}}>
                     <td>{{this.id}}</td>
                     <td>{{this.student}}</td>
                     <td>{{this.book}}</td>

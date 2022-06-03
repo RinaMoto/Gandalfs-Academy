@@ -1,102 +1,107 @@
 <!-- professors.hbs -->
-<h1>Professors</h1>
+<html>
+    <head>
+        <h1>Professors</h1>
 
-<nav>
-  <a href ='/'>Home</a>
-  <a href ='/Books'>Books</a>
-  <a href ='/Students'>Students</a>
-  <a href ='/Professors'>Professors</a>
-  <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Schedules'>Class_Schedules</a>
-  <a href ='/Houses'>Houses</a>
-  <a href ='/Spells'>Spells</a>
-  <a href ='/Students_Has_Books'>Students_Has_Books</a>
-  <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
-  <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
-</nav>
+        <nav>
+        <a href ='/'>Home</a>
+        <a href ='/Books'>Books</a>
+        <a href ='/Students'>Students</a>
+        <a href ='/Professors'>Professors</a>
+        <a href ='/Classes'>Classes</a>
+        <a href ='/Class_Schedules'>Class_Schedules</a>
+        <a href ='/Houses'>Houses</a>
+        <a href ='/Spells'>Spells</a>
+        <a href ='/Students_Has_Books'>Students_Has_Books</a>
+        <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+        <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
 
-<p>The best and brightest professors teach at Gandalf's Academy, leading the magical world in both 
-    education and research. No matter the field, the greatest witches, warlocks, sorceresses, enchantresses, and wizards can be found
-    here!
-</p>
+        <p>The best and brightest professors teach at Gandalf's Academy, leading the magical world in both 
+            education and research. No matter the field, the greatest witches, warlocks, sorceresses, enchantresses, and wizards can be found
+            here! 👨‍🏫
+        </p>
+    </head>
 
-{{!-- Create a table --}}
-<table id="professor-table">>
+    <body>
+        {{!-- Create a table --}}
+        <table id="professor-table">
 
-    {{!-- Header section --}}
-    <thead>
+            {{!-- Header section --}}
+            <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                    <th>delete</th>
+                </tr>
+            </thead>
 
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the book_id, title, cost, and delete button in order --}}
-        {{#each data}}
-        <tr data-value={{this.professor_id}}>>
-            <td>{{this.professor_id}}</td>
-            <td>{{this.first_name}}</td>
-            <td>{{this.last_name}}</td>
-            <td>{{this.age}}</td>
-            <td>{{this.house}}</td>
-            <td><button onclick="deleteProfessor({{this.professor_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_professor.js"></script>
-
-<div>
-    <form id="search-f_name-html" method='GET' action='/Professors'>
-        <fieldset>
-            <legend>Search Using an HTML Form</legend>
-            <legend>Search by first name using the field below. Partial first names will be accepted!</legend>
-            <label for="input-f_name">Search by First Name: </label>
-            <input type="text" name="f_name" id="input-f_name-html-search">
-        </fieldset>
-        <div>
-           <button type="submit">Submit</button>
-            <a href='/Professors'><button>Reset</button></a> 
-        </div>
-        
-    </form>
-</div>
-
-<div id = "add-professor">
-    <form id="add-professor-form-ajax">
-        <fieldset>
-            <legend>Adding a Professor With AJAX</legend>
-            <legend>To add a new professor, please enter their information below and click 'Submit'!</legend>
-            <label for="input-f_name">First Name: </label>
-            <input type="text" name="input-f_name" id="input-f_name">
-
-            <label for="input-l_name">Last Name: </label>
-            <input type="text" name="input-l_name" id="input-l_name">
-            
-            <label for="input-age">Age: </label>
-            <input type="text" name="input-age" id="input-age">
-
-            <label for="input-house">House: </label>
-            <select name="input-house" id="input-house">
-                <option value="">Select a House</option>
-                {{#each houses}}
-                <option value="{{this.house_id}}">{{this.house_name}}</option>
+            {{!-- Body section --}}
+            <tbody>
+                {{!-- For each row, print the book_id, title, cost, and delete button in order --}}
+                {{#each data}}
+                <tr data-value={{this.professor_id}}>
+                    <td>{{this.professor_id}}</td>
+                    <td>{{this.first_name}}</td>
+                    <td>{{this.last_name}}</td>
+                    <td>{{this.age}}</td>
+                    <td>{{this.house}}</td>
+                    <td><button onclick="deleteProfessor({{this.professor_id}})">Delete</button></td>
+                </tr>
                 {{/each}}
-            </select>
-        </fieldset>
-        <button type="submit">Add</button>
-    </form>
+            </tbody>
+        </table>
+        <script src="./js/delete_professor.js"></script>
 
-    {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-    <script src="./js/add_professor.js"></script>
-</div>
+        <div>
+            <form id="search-f_name-html" method='GET' action='/Professors'>
+                <fieldset>
+                    <legend>Search Using an HTML Form</legend>
+                    <legend>Search by first name using the field below. Partial first names will be accepted!</legend>
+                    <label for="input-f_name">Search by First Name: </label>
+                    <input type="text" name="f_name" id="input-f_name-html-search">
+                </fieldset>
+                <div>
+                <button type="submit">Submit</button>
+                    <a href='/Professors'><button>Reset</button></a> 
+                </div>
+                
+            </form>
+        </div>
+
+        <div id = "add-professor">
+            <form id="add-professor-form-ajax">
+                <fieldset>
+                    <legend>Adding a Professor With AJAX</legend>
+                    <legend>To add a new professor, please enter their information below and click 'Submit'!</legend>
+                    <label for="input-f_name">First Name: </label>
+                    <input type="text" name="input-f_name" id="input-f_name">
+
+                    <label for="input-l_name">Last Name: </label>
+                    <input type="text" name="input-l_name" id="input-l_name">
+                    
+                    <label for="input-age">Age: </label>
+                    <input type="text" name="input-age" id="input-age">
+
+                    <label for="input-house">House: </label>
+                    <select name="input-house" id="input-house">
+                        <option value="">Select a House</option>
+                        {{#each houses}}
+                        <option value="{{this.house_id}}">{{this.house_name}}</option>
+                        {{/each}}
+                    </select>
+                </fieldset>
+                <button type="submit">Add</button>
+            </form>
+
+            {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+            <script src="./js/add_professor.js"></script>
+        </body>
+    </div>
+</html>

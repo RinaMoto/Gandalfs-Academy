@@ -22,7 +22,7 @@
         </nav>
     </head>
     <body>
-        <h3>Browse Students_Has_Classes</h3>
+        <p>At Gandalf's Academy, classes are taught to Wizards by the best professors in the Wizarding world</p>
         <table id="students-has-classes-table">
             <thead>
                 {{#each data.[0]}}
@@ -34,7 +34,7 @@
             </thead>  
             <tbody>
                {{#each data}}
-                <tr data-value={{this.id}}>>
+                <tr data-value={{this.id}}>
                     <td>{{this.id}}</td>
                     <td>{{this.student}}</td>
                     <td>{{this.class}}</td>

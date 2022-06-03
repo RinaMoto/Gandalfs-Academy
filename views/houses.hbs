@@ -1,102 +1,107 @@
 <!-- houses.hbs -->
-<h1>Houses</h1>
+<html>
+    <head>
+        <h1>Houses</h1>
 
-<nav>
-  <a href ='/'>Home</a>
-  <a href ='/Books'>Books</a>
-  <a href ='/Students'>Students</a>
-  <a href ='/Professors'>Professors</a>
-  <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Schedules'>Class_Schedules</a>
-  <a href ='/Houses'>Houses</a>
-  <a href ='/Spells'>Spells</a>
-  <a href ='/Students_Has_Books'>Students_Has_Books</a>
-  <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
-  <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
-</nav>
+        <nav>
+        <a href ='/'>Home</a>
+        <a href ='/Books'>Books</a>
+        <a href ='/Students'>Students</a>
+        <a href ='/Professors'>Professors</a>
+        <a href ='/Classes'>Classes</a>
+        <a href ='/Class_Schedules'>Class_Schedules</a>
+        <a href ='/Houses'>Houses</a>
+        <a href ='/Spells'>Spells</a>
+        <a href ='/Students_Has_Books'>Students_Has_Books</a>
+        <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+        <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
 
-<p>Welcome to the Books page, where anyone can learn magic!</p>
+        <p>Gandalf's Academy offers world-renowned books</p>
+    </head>
+    <body>
+        {{!-- Create a table --}}
+        <table id="houses-table">
 
-{{!-- Create a table --}}
-<table id="houses-table">>
+            {{!-- Header section --}}
+            <thead>
 
-    {{!-- Header section --}}
-    <thead>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                    <th>delete</th>
+                </tr>
+            </thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
+            {{!-- Body section --}}
+            <tbody>
 
-    {{!-- Body section --}}
-    <tbody>
+                {{!-- For each row, print the house_id, name, and delete button in order --}}
+                {{#each data}}
+                <tr data-value={{this.house_id}}>
+                    <td>{{this.house_id}}</td>
+                    <td>{{this.house_name}}</td>
+                    <td><button onclick="deleteHouse({{this.house_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_house.js"></script>
 
-        {{!-- For each row, print the house_id, name, and delete button in order --}}
-        {{#each data}}
-        <tr data-value={{this.house_id}}>>
-            <td>{{this.house_id}}</td>
-            <td>{{this.house_name}}</td>
-            <td><button onclick="deleteHouse({{this.house_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_house.js"></script>
+        <!-- /views/books.hbs -->
 
-<!-- /views/books.hbs -->
-
-<form id="search-house-name-html" method='GET' action='/Houses'>
-    <fieldset>
-        <legend>Search Using an HTML Form</legend>
-        <legend>Search by title using the field below. Partial titles will be accepted!</legend>
-        <label for="input-house-name">Search by Name: </label>
-        <input type="text" name="name" id="input-house-name-html-search">
-    </fieldset>
-    <button type="submit">Search</button>
-    <a href='/Houses'><button>Reset</button></a>
-</form>
+        <form id="search-house-name-html" method='GET' action='/Houses'>
+            <fieldset>
+                <legend>Search Using an HTML Form</legend>
+                <legend>Search by title using the field below. Partial titles will be accepted!</legend>
+                <label for="input-house-name">Search by Name: </label>
+                <input type="text" name="name" id="input-house-name-html-search">
+            </fieldset>
+            <button type="submit">Search</button>
+            <a href='/Houses'><button>Reset</button></a>
+        </form>
 
 
-<div id = "add-house">
-{{!-- Form to add a record to the table  --}}
-<form id="add-house-ajax">
-    <fieldset>
-        <legend>Adding a House With AJAX</legend>
-        <legend>To add a new house, please enter its information below and click 'Submit'!</legend>
-        <label for="input-house-name">Name: </label>
-        <input type="text" name="input-house-name" id="input-house-name">
-    </fieldset>
-    <button type="submit">Add</button>
-</form>
+        <div id = "add-house">
+        {{!-- Form to add a record to the table  --}}
+        <form id="add-house-ajax">
+            <fieldset>
+                <legend>Adding a House With AJAX</legend>
+                <legend>To add a new house, please enter its information below and click 'Submit'!</legend>
+                <label for="input-house-name">Name: </label>
+                <input type="text" name="input-house-name" id="input-house-name">
+            </fieldset>
+            <button type="submit">Add</button>
+        </form>
 
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_house.js"></script>
-</div>
+        {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+        <script src="./js/add_house.js"></script>
+        </div>
 
-<form id="update-house-form-ajax">
-    <fieldset>
-        <legend>Updating A House Form</legend>
-        <legend>To update a specific house's title or cost select its title from the drop-down menu on the left and enter the updated information in the appropriate fields</legend>
-        <label for="input-selectHouseName">Name of House to Update: </label>
-        <select name="input-selectHouseName" id="mySelectHouse">
-            <option value="test">Select a house</option>
-            {{#each data}}
-            <option value="{{this.house_id}}">{{this.house_name}}</option>
-            {{/each}}
-        </select>
+        <form id="update-house-form-ajax">
+            <fieldset>
+                <legend>Updating A House Form</legend>
+                <legend>To update a specific house's title or cost select its title from the drop-down menu on the left and enter the updated information in the appropriate fields</legend>
+                <label for="input-selectHouseName">Name of House to Update: </label>
+                <select name="input-selectHouseName" id="mySelectHouse">
+                    <option value="test">Select a house</option>
+                    {{#each data}}
+                    <option value="{{this.house_id}}">{{this.house_name}}</option>
+                    {{/each}}
+                </select>
 
-        <label for="input-house-name-update">New House Name: </label>
-        <input type="text" name="input-house-name-update" id="input-house-name-update">
-    </fieldset>
-    <button type="submit">Update</button>
+                <label for="input-house-name-update">New House Name: </label>
+                <input type="text" name="input-house-name-update" id="input-house-name-update">
+            </fieldset>
+            <button type="submit">Update</button>
 
-</form>
+        </form>
 
-<script src="./js/update_house.js"></script>
+        <script src="./js/update_house.js"></script>
+    </body>
+</html>

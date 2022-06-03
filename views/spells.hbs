@@ -1,89 +1,93 @@
 <!-- spells.hbs -->
-<h1>Spells</h1>
-<link rel="stylesheet" href="/css/styles.css" type="text/css">
-<nav>
-  <a href ='/'>Home</a>
-  <a href ='/Books'>Books</a>
-  <a href ='/Students'>Students</a>
-  <a href ='/Professors'>Professors</a>
-  <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Schedules'>Class_Schedules</a>
-  <a href ='/Houses'>Houses</a>
-  <a href ='/Spells'>Spells</a>
-  <a href ='/Students_Has_Books'>Students_Has_Books</a>
-  <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
-  <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
-</nav>
+<html>
+    <head>
+        <h1>Spells</h1>
+        <link rel="stylesheet" href="/css/styles.css" type="text/css">
+        <nav>
+            <a href ='/'>Home</a>
+            <a href ='/Books'>Books</a>
+            <a href ='/Students'>Students</a>
+            <a href ='/Professors'>Professors</a>
+            <a href ='/Classes'>Classes</a>
+            <a href ='/Class_Schedules'>Class_Schedules</a>
+            <a href ='/Houses'>Houses</a>
+            <a href ='/Spells'>Spells</a>
+            <a href ='/Students_Has_Books'>Students_Has_Books</a>
+            <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+            <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
 
-<p>Welcome to the Books page, where anyone can learn magic!</p>
+        <p>At Gandalf's Academy, each wizard will master the foundamentals of casting spells 🔮</p>
+    </head>
+    <body>
+        {{!-- Create a table --}}
+        <table id="spells-table">
+            {{!-- Header section --}}
+            <thead>
 
-{{!-- Create a table --}}
-<table id="spells-table">>
+                {{!-- For just the first row, we print each key of the row object as a header cell so we
+                know what each column means when the page renders --}}
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                    <th>delete</th>
+                </tr>
+            </thead>
 
-    {{!-- Header section --}}
-    <thead>
+            {{!-- Body section --}}
+            <tbody>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
+                {{!-- For each row, print the book_id, title, cost, and delete button in order --}}
+                {{#each data}}
+                <tr data-value={{this.spell_id}}>
+                    <td>{{this.spell_id}}</td>
+                    <td>{{this.spell_name}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{this.require_wand}}</td>
+                    <td>{{this.spell_type}}</td>
+                    <td><button onclick="deleteSpell({{this.spell_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_spell.js"></script>
 
-    {{!-- Body section --}}
-    <tbody>
+        <!-- /views/spell.hbs -->
 
-        {{!-- For each row, print the book_id, title, cost, and delete button in order --}}
-        {{#each data}}
-        <tr data-value={{this.spell_id}}>>
-            <td>{{this.spell_id}}</td>
-            <td>{{this.spell_name}}</td>
-            <td>{{this.description}}</td>
-            <td>{{this.require_wand}}</td>
-            <td>{{this.spell_type}}</td>
-            <td><button onclick="deleteSpell({{this.spell_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_spell.js"></script>
+        <div id = "add-spell">
+        {{!-- Form to add a record to the table  --}}
+        <form id="add-spell-ajax">
+            <fieldset>
+                <legend>Adding a Spell With AJAX</legend>
+                <legend>To add a new spell, please enter its information below and click 'Submit'!</legend>
+                <label for="input-spell-name">Name: </label>
+                <input type="text" name="input-spell-name" id="input-spell-name">
+                
+                <label for="input-description">Description of spell: </label>
+                <input type="text" name="input-description" id="input-description">
 
-<!-- /views/spell.hbs -->
+                <label for="input-require-wand">require wand: </label>
+                    <select name="input-require-wand" id="mySelectRequireWand">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                
+                <label for="input-spell-type">Spell type:</label>
+                <select name="input-spell-type" id="mySelectSpellType">
+                    <option value="test">Select a spell type</option>
+                    {{#each data}}
+                    <option value="{{this.spell_type}}">{{this.spell_type}}</option>
+                    {{/each}}
+                </select>
+            </fieldset>
+            <button type="submit">Submit</button>
+        </form>
 
-<div id = "add-spell">
-{{!-- Form to add a record to the table  --}}
-<form id="add-spell-ajax">
-    <fieldset>
-        <legend>Adding a Spell With AJAX</legend>
-        <legend>To add a new spell, please enter its information below and click 'Submit'!</legend>
-        <label for="input-spell-name">Name: </label>
-        <input type="text" name="input-spell-name" id="input-spell-name">
-        
-        <label for="input-description">Description of spell: </label>
-        <input type="text" name="input-description" id="input-description">
-
-        <label for="input-require-wand">require wand: </label>
-            <select name="input-require-wand" id="mySelectRequireWand">
-                <option value="0">0</option>
-                <option value="1">1</option>
-            </select>
-        
-        <label for="input-spell-type">Spell type:</label>
-        <select name="input-spell-type" id="mySelectSpellType">
-            <option value="test">Select a spell type</option>
-            {{#each data}}
-            <option value="{{this.spell_type}}">{{this.spell_type}}</option>
-            {{/each}}
-        </select>
-    </fieldset>
-    <button type="submit">Submit</button>
-</form>
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_spell.js"></script>
-</div>
+        {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+        <script src="./js/add_spell.js"></script>
+        </div>
+    </body>
+</html>

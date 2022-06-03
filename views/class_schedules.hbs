@@ -19,9 +19,9 @@
             <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
             <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
         </nav>
+        <p>All classes at Gandalf's Academy are held from monday through friday</p>
     </head>
     <body>
-        <h3>Browse Class Schedules</h3>
         <table id="schedule-table">
             <thead>
                 {{#each data.[0]}}
@@ -33,7 +33,7 @@
             </thead>  
             <tbody>
                {{#each data}}
-                <tr data-value={{this.schedule_id}}>>
+                <tr data-value={{this.schedule_id}}>
                     <td>{{this.schedule_id}}</td>
                     <td>{{this.meets_monday}}</td>
                     <td>{{this.meets_tuesday}}</td>

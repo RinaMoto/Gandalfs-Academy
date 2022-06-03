@@ -15,7 +15,7 @@
         </nav>
     </head>
     <body>
-        <h3>Browse Books_Has_Spells</h3>
+        <p>Each book goes over the best practices for each spell</p>
         <table id="books-has-spells-table">
             <thead>
                 {{#each data.[0]}}
@@ -27,7 +27,7 @@
             </thead>  
             <tbody>
                {{#each data}}
-                <tr data-value={{this.id}}>>
+                <tr data-value={{this.id}}>
                     <td>{{this.id}}</td>
                     <td>{{this.book}}</td>
                     <td>{{this.spell}}</td>

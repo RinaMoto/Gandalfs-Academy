@@ -1,99 +1,105 @@
 <!-- books.hbs -->
-<h1>Books</h1>
+<html>
+    <head>
+        <h1>Books</h1>
 
-<nav>
-  <a href ='/'>Home</a>
-  <a href ='/Books'>Books</a>
-  <a href ='/Students'>Students</a>
-  <a href ='/Professors'>Professors</a>
-  <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Schedules'>Class_Schedules</a>
-  <a href ='/Houses'>Houses</a>
-  <a href ='/Spells'>Spells</a>
-  <a href ='/Students_Has_Books'>Students_Has_Books</a>
-  <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
-  <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
-</nav>
+        <nav>
+        <a href ='/'>Home</a>
+        <a href ='/Books'>Books</a>
+        <a href ='/Students'>Students</a>
+        <a href ='/Professors'>Professors</a>
+        <a href ='/Classes'>Classes</a>
+        <a href ='/Class_Schedules'>Class_Schedules</a>
+        <a href ='/Houses'>Houses</a>
+        <a href ='/Spells'>Spells</a>
+        <a href ='/Students_Has_Books'>Students_Has_Books</a>
+        <a href ='/Students_Has_Classes'>Students_Has_Classes</a>
+        <a href ='/Books_Has_Spells'>Books_Has_Spells</a>
+        </nav>
 
-<p>Welcome to the Books page, where anyone can learn magic!</p>
-<table id="books-table">
-    <thead>
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-            <th>delete</th>
-        </tr>
-    </thead>
+        <p>Welcome to the Books page, where anyone can learn magic! &#128218;</p>
+    </head>
+    <body>
+        <table id="books-table">
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                    <th>delete</th>
+                </tr>
+            </thead>
 
-    {{!-- Body section --}}
-    <tbody>
+            {{!-- Body section --}}
+            <tbody>
 
-        {{!-- For each row, print the book_id, title, cost, and delete button in order --}}
-        {{#each data}}
-        <tr data-value={{this.book_id}}>>
-            <td>{{this.book_id}}</td>
-            <td>{{this.title}}</td>
-            <td>{{this.cost}}</td>
-            <td><button onclick="deleteBook({{this.book_id}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_book.js"></script>
+                {{!-- For each row, print the book_id, title, cost, and delete button in order --}}
+                {{#each data}}
+                <tr data-value={{this.book_id}}>
+                    <td>{{this.book_id}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.cost}}</td>
+                    <td><button onclick="deleteBook({{this.book_id}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_book.js"></script>
 
-<!-- /views/books.hbs -->
-<form id="search-title-html" method='GET' action='/Books'>
-        <fieldset>
-            <legend>Search Using an HTML Form</legend>
-            <legend>Search by title using the field below. Partial titles will be accepted!</legend>
-            <label for="input-title">Search by Title: </label>
-            <input type="text" name="title" id="input-title-html-search">   
-        </fieldset>
-        <button type="submit">Submit</button>
-        <a href='/Books'><button>Reset</button></a>
-</form>
+        <!-- /views/books.hbs -->
+        <form id="search-title-html" method='GET' action='/Books'>
+                <fieldset>
+                    <legend>Search Using an HTML Form</legend>
+                    <legend>Search by title using the field below. Partial titles will be accepted!</legend>
+                    <label for="input-title">Search by Title: </label>
+                    <input type="text" name="title" id="input-title-html-search">   
+                </fieldset>
+                <button type="submit">Submit</button>
+                <a href='/Books'><button>Reset</button></a>
+        </form>
 
-<div id = "add-book">
-{{!-- Form to add a record to the table  --}}
-    <form id="add-book-form-ajax">
-        <fieldset>
-            <legend>Adding a Book With AJAX</legend>
-            <legend>To add a new book, please enter its information below and click 'Submit'!</legend>
-            <label for="input-title">Title: </label>
-            <input type="text" name="input-title" id="input-title">
-            
-            <label for="input-cost"> Cost: </label>
-            <input type="text" name="input-cost" id="input-cost">
-        </fieldset>
-        <button type="submit">Add</button>
-    </form>
+        <div id = "add-book">
+        {{!-- Form to add a record to the table  --}}
+            <form id="add-book-form-ajax">
+                <fieldset>
+                    <legend>Adding a Book With AJAX</legend>
+                    <legend>To add a new book, please enter its information below and click 'Submit'!</legend>
+                    <label for="input-title">Title: </label>
+                    <input type="text" name="input-title" id="input-title">
+                    
+                    <label for="input-cost"> Cost: </label>
+                    <input type="text" name="input-cost" id="input-cost">
+                </fieldset>
+                <button type="submit">Add</button>
+            </form>
 
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_book.js"></script>
-</div>
+        {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+        <script src="./js/add_book.js"></script>
+        </div>
 
-<form id="update-book-form-ajax">
-    <fieldset>
-        <legend>Updating A Book Form</legend>
-        <legend>To update a specific book's title or cost select its title from the drop-down menu on the left and enter the updated information in the appropriate fields</legend>
-        <label for="input-selectTitle">Title of Book to Update: </label>
-        <select name="input-selectTitle" id="mySelect">
-            <option value="test">Select a Title</option>
-            {{#each data}}
-            <option value="{{this.book_id}}">{{this.title}}</option>
-            {{/each}}
-        </select>
+        <form id="update-book-form-ajax">
+            <fieldset>
+                <legend>Updating A Book Form</legend>
+                <legend>To update a specific book's title or cost select its title from the drop-down menu on the left and enter the updated information in the appropriate fields</legend>
+                <label for="input-selectTitle">Title of Book to Update: </label>
+                <select name="input-selectTitle" id="mySelect">
+                    <option value="test">Select a Title</option>
+                    {{#each data}}
+                    <option value="{{this.book_id}}">{{this.title}}</option>
+                    {{/each}}
+                </select>
 
-        <label for="input-title-update">New Title: </label>
-        <input type="text" name="input-title-update" id="input-title-update">
+                <label for="input-title-update">New Title: </label>
+                <input type="text" name="input-title-update" id="input-title-update">
 
-        <label for="input-cost-update">New Cost: </label>
-        <input type="text" name="input-cost-update" id="input-cost-update">
-    </fieldset>
-    <button type="submit">Update</button>
-</form>
+                <label for="input-cost-update">New Cost: </label>
+                <input type="text" name="input-cost-update" id="input-cost-update">
+            </fieldset>
+            <button type="submit">Update</button>
+        </form>
 
-<script src="./js/update_book.js"></script>
+        <script src="./js/update_book.js"></script>
+    </body>
+</html>
