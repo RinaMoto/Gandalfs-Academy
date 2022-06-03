@@ -45,8 +45,8 @@
         {{#each data}}
         <tr data-value={{this.student_id}}>>
             <td>{{this.student_id}}</td>
-            <td>{{this.f_name}}</td>
-            <td>{{this.l_name}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
             <td>{{this.age}}</td>
             <td>{{this.year}}</td>
             <td>{{this.is_full_time}}</td>
@@ -57,6 +57,18 @@
     </tbody>
 </table>
 <script src="./js/delete_student.js"></script>
+
+<form id="search-f_name-html" method='GET' action='/Students'>
+    <fieldset>
+        <legend>Search Using an HTML Form</legend>
+        <legend>Search by first name using the field below. Partial first names will be accepted!</legend>
+        <label for="input-f_name">Search by First Name: </label>
+        <input type="text" name="f_name" id="input-f_name-html-search">
+    </fieldset>
+    <button type="submit">Search</button>
+    <a href='/Students'><button>Reset</button></a>
+</form>
+
 
 <div id = add-student>
 {{!-- Form to add a record to the table  --}}
@@ -96,16 +108,5 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_student.js"></script>
 </div>
-
-<form id="search-f_name-html" method='GET' action='/Students'>
-    <fieldset>
-        <legend>Search Using an HTML Form</legend>
-        <legend>Search by first name using the field below. Partial first names will be accepted!</legend>
-        <label for="input-f_name">Search by First Name: </label>
-        <input type="text" name="f_name" id="input-f_name-html-search">
-    </fieldset>
-    <button type="submit">Search</button>
-    <a href='/Students'><button>Reset</button></a>
-</form>
 
 {{!-- NO UPDATE FOR STUDENTS --}}

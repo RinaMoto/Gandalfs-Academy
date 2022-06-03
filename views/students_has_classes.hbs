@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <h1>Students_Has_Books</h1>
+        <h1>Students_Has_Classes</h1>
         <nav>
             <a href ='/'>Home</a>
             <a href ='/Books'>Books</a>
@@ -22,8 +22,8 @@
         </nav>
     </head>
     <body>
-        <h3>Browse Students_has_books</h3>
-        <table id="students-has-books-table">
+        <h3>Browse Students_Has_Classes</h3>
+        <table id="students-has-classes-table">
             <thead>
                 {{#each data.[0]}}
                 <th>
@@ -37,17 +37,17 @@
                 <tr data-value={{this.id}}>>
                     <td>{{this.id}}</td>
                     <td>{{this.student}}</td>
-                    <td>{{this.book}}</td>
+                    <td>{{this.class}}</td>
                     <td><button onclick="deleteStudentsHasBooks({{this.id}})">Delete</button></td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
-        <script src="./js/delete_students_has_books.js"></script>
+        <script src="./js/delete_students_has_classes.js"></script>
         
-        <div id = "add-students-has-books">
+        <div id="add-students-has-classes">
         {{!-- Form to add a record to the table  --}}
-        <form id="add-students-has-books-ajax">
+        <form id="add-students-has-classes-ajax">
             <fieldset>
                 <legend>Adding a relationship between students and books With AJAX</legend>
                 <legend>To add a new relationship, please enter its information below and click 'Submit'!</legend>
@@ -59,16 +59,16 @@
                     {{/each}}
                 </select>
 
-                <label for="input-selectBook">Title of Book to add: </label>
-                <select name="input-selectBook" id="mySelectBook">
-                    <option value="test">Select a Book</option>
-                    {{#each books}}
-                    <option value="{{this.book_id}}">{{this.title}}</option>
+                <label for="input-selectClass">Title of Book to add: </label>
+                <select name="input-selectClass" id="mySelectClass">
+                    <option value="test">Select a Class</option>
+                    {{#each classes}}
+                    <option value="{{this.class_id}}">{{this.class_name}}</option>
                     {{/each}}
                 </select>
             </fieldset>
             <button type="submit">Add</button>
         </form>
-        <script src="./js/add_students_has_books.js"></script>
+        <script src="./js/add_students_has_classes.js"></script>
     </body>
 </html>

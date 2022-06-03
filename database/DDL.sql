@@ -42,7 +42,7 @@ CREATE TABLE Professors
     house_id int,
     PRIMARY KEY (professor_id),
     FOREIGN KEY (house_id)
-    REFERENCES Houses(house_id),
+    REFERENCES Houses(house_id) ON DELETE CASCADE,
     UNIQUE(f_name, l_name)
 );
 
@@ -97,9 +97,9 @@ CREATE TABLE Students_Has_Classes
     student_id int NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (class_id)
-    REFERENCES Classes(class_id),
+    REFERENCES Classes(class_id) ON DELETE CASCADE,
     FOREIGN KEY (student_id)
-    REFERENCES Students(student_id),
+    REFERENCES Students(student_id) ON DELETE CASCADE,
     UNIQUE(student_id, class_id)
 );
 

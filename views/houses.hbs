@@ -52,6 +52,18 @@
 
 <!-- /views/books.hbs -->
 
+<form id="search-house-name-html" method='GET' action='/Houses'>
+    <fieldset>
+        <legend>Search Using an HTML Form</legend>
+        <legend>Search by title using the field below. Partial titles will be accepted!</legend>
+        <label for="input-house-name">Search by Name: </label>
+        <input type="text" name="name" id="input-house-name-html-search">
+    </fieldset>
+    <button type="submit">Search</button>
+    <a href='/Houses'><button>Reset</button></a>
+</form>
+
+
 <div id = "add-house">
 {{!-- Form to add a record to the table  --}}
 <form id="add-house-ajax">
@@ -67,17 +79,6 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_house.js"></script>
 </div>
-
-<form id="search-house-name-html" method='GET' action='/Houses'>
-    <fieldset>
-        <legend>Search Using an HTML Form</legend>
-        <legend>Search by title using the field below. Partial titles will be accepted!</legend>
-        <label for="input-house-name">Search by Name: </label>
-        <input type="text" name="name" id="input-house-name-html-search">
-    </fieldset>
-    <button type="submit">Search</button>
-    <a href='/Houses'><button>Reset</button></a>
-</form>
 
 <form id="update-house-form-ajax">
     <fieldset>

@@ -1,3 +1,11 @@
+/* add_class.js written by Christopher Ball and Rina Easterday, ONID ballchr and easterdr
+for Oregon State University CS 340 Spring Term 2022
+last modified: 06/02/2022
+CITATION: add_class adapted from CS 340 nodejs-starter-app provided by Prof Curry
+found here: https://github.com/osu-cs340-ecampus/nodejs-starter-app. Mostly used step 4: Dynamically Displaying Data
+but all other steps used as well.
+*/
+
 // Get the objects we need to modify
 let addClassForm = document.getElementById('add-class-form-ajax');
 

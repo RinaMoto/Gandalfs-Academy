@@ -1,3 +1,10 @@
+/* add_book.js written by Christopher Ball and Rina Easterday, ONID ballchr and easterdr
+for Oregon State University CS 340 Spring Term 2022
+last modified: 06/02/2022
+CITATION: add_book adapted from CS 340 nodejs-starter-app provided by Prof Curry
+found here: https://github.com/osu-cs340-ecampus/nodejs-starter-app. Mostly used step 8: Dynamically Updating Data
+but all other steps used as well.
+*/
 
 // code for deletePerson using regular javascript/xhttp
 function deleteBook(bookID) {

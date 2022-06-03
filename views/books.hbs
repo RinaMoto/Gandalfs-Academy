@@ -45,6 +45,16 @@
 <script src="./js/delete_book.js"></script>
 
 <!-- /views/books.hbs -->
+<form id="search-title-html" method='GET' action='/Books'>
+        <fieldset>
+            <legend>Search Using an HTML Form</legend>
+            <legend>Search by title using the field below. Partial titles will be accepted!</legend>
+            <label for="input-title">Search by Title: </label>
+            <input type="text" name="title" id="input-title-html-search">   
+        </fieldset>
+        <button type="submit">Submit</button>
+        <a href='/Books'><button>Reset</button></a>
+</form>
 
 <div id = "add-book">
 {{!-- Form to add a record to the table  --}}
@@ -64,17 +74,6 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_book.js"></script>
 </div>
-
-<form id="search-title-html" method='GET' action='/Books'>
-        <fieldset>
-            <legend>Search Using an HTML Form</legend>
-            <legend>Search by title using the field below. Partial titles will be accepted!</legend>
-            <label for="input-title">Search by Title: </label>
-            <input type="text" name="title" id="input-title-html-search">   
-        </fieldset>
-        <button type="submit">Submit</button>
-        <a href='/Books'><button>Reset</button></a>
-</form>
 
 <form id="update-book-form-ajax">
     <fieldset>

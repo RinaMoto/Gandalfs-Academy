@@ -16,6 +16,11 @@ table {
     margin-left: auto;
 }
 
+body {
+    background-color: rgba(210, 210, 210, 0.3);
+    margin: 2rem;
+}
+
 nav {
     padding: 1rem;
     background-color: #95b5d2;
@@ -64,7 +69,8 @@ legend {
 }
 
 h1 {
-    margin-top: 1rem;
+    margin: 0;
+    padding: 2rem;
     text-align: center;
     color: #c4b1c9;
 }

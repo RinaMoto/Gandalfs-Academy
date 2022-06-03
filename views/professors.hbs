@@ -7,7 +7,7 @@
   <a href ='/Students'>Students</a>
   <a href ='/Professors'>Professors</a>
   <a href ='/Classes'>Classes</a>
-  <a href ='/Class_Shedules'>Class_Schedules</a>
+  <a href ='/Class_Schedules'>Class_Schedules</a>
   <a href ='/Houses'>Houses</a>
   <a href ='/Spells'>Spells</a>
   <a href ='/Students_Has_Books'>Students_Has_Books</a>
@@ -45,8 +45,8 @@
         {{#each data}}
         <tr data-value={{this.professor_id}}>>
             <td>{{this.professor_id}}</td>
-            <td>{{this.firstName}}</td>
-            <td>{{this.lastName}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
             <td>{{this.age}}</td>
             <td>{{this.house}}</td>
             <td><button onclick="deleteProfessor({{this.professor_id}})">Delete</button></td>
@@ -55,6 +55,22 @@
     </tbody>
 </table>
 <script src="./js/delete_professor.js"></script>
+
+<div>
+    <form id="search-f_name-html" method='GET' action='/Professors'>
+        <fieldset>
+            <legend>Search Using an HTML Form</legend>
+            <legend>Search by first name using the field below. Partial first names will be accepted!</legend>
+            <label for="input-f_name">Search by First Name: </label>
+            <input type="text" name="f_name" id="input-f_name-html-search">
+        </fieldset>
+        <div>
+           <button type="submit">Submit</button>
+            <a href='/Professors'><button>Reset</button></a> 
+        </div>
+        
+    </form>
+</div>
 
 <div id = "add-professor">
     <form id="add-professor-form-ajax">
@@ -83,19 +99,4 @@
 
     {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
     <script src="./js/add_professor.js"></script>
-</div>
-<div>
-    <form id="search-f_name-html" method='GET' action='/Professors'>
-        <fieldset>
-            <legend>Search Using an HTML Form</legend>
-            <legend>Search by first name using the field below. Partial first names will be accepted!</legend>
-            <label for="input-f_name">Search by First Name: </label>
-            <input type="text" name="f_name" id="input-f_name-html-search">
-        </fieldset>
-        <div>
-           <button type="submit">Submit</button>
-            <a href='/Professors'><button>Reset</button></a> 
-        </div>
-        
-    </form>
 </div>

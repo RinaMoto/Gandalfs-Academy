@@ -45,22 +45,34 @@
         {{#each data}}
         <tr data-value={{this.class_id}}>
             <td>{{this.class_id}}</td>
-            <td>{{this.className}}</td>
+            <td>{{this.class_name}}</td>
             <td>{{this.description}}</td>
             <td>{{this.schedule_id}}</td>
-            <td>{{this.startTime}}</td>
-            <td>{{this.endTime}}</td>
-            <td>{{this.classSize}}</td>
+            <td>{{this.start_time}}</td>
+            <td>{{this.end_time}}</td>
+            <td>{{this.class_size}}</td>
             <td>{{this.professor}}</td>
             <td>{{this.book}}</td>
             <td>{{this.cost}}</td>
-            <td>{{this.classYear}}</td>
+            <td>{{this.class_year}}</td>
             <td><button onclick="deleteClass({{this.class_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <script src="./js/delete_class.js"></script>
+
+<form id="search-class_name-html" method='GET' action='/Classes'>
+        <fieldset>
+            <legend>Search Using an HTML Form</legend>
+            <legend>Search by class name using the field below. Partial names will be accepted!</legend>
+            <label for="input-class_name">Search by Class Name: </label>
+            <input type="text" name="class_name" id="input-class_name-html-search">
+        </fieldset>
+        <button type="submit">Search</button>
+        <a href='/Classes'><button>Reset</button></a>
+</form>
+
 
 <div id = add-class>
 {{!-- Form to add a record to the table  --}}
@@ -118,16 +130,5 @@
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_class.js"></script>
 </div>
-
-<form id="search-class_name-html" method='GET' action='/Classes'>
-        <fieldset>
-            <legend>Search Using an HTML Form</legend>
-            <legend>Search by class name using the field below. Partial names will be accepted!</legend>
-            <label for="input-class_name">Search by Class Name: </label>
-            <input type="text" name="class_name" id="input-class_name-html-search">
-        </fieldset>
-        <button type="submit">Search</button>
-        <a href='/Classes'><button>Reset</button></a>
-</form>
 
 {{!-- NO UPDATE FOR Classes --}}
