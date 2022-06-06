@@ -1053,22 +1053,6 @@ app.delete('/delete-books-has-spells-ajax/', function(req,res,next)
         }
 );
 
-app.delete('/delete-books-has-spells-ajax/', function(req,res,next)
-{
-    let data = req.body;
-    let studentsHasClassesID = parseInt(data.id);
-    let deleteStudentsHasClasses= `DELETE FROM Students_Has_Classes WHERE id = ?`;
-    
-        db.pool.query(deleteStudentsHasClasses, [studentsHasClassesID], function(error, rows, fields) {
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                } else {
-                    res.sendStatus(204);
-                }
-            })
-        }
-);
 /*
     LISTENER
 */
