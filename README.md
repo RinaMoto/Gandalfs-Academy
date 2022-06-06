@@ -17,6 +17,9 @@ Gandalf’s Sorcery Academy is a school for witches and wizards with 300 student
 |Students_Has_Classes|
 |Books_Has_Spells|
 
+### Database Schema
+![Database Schema](https://user-images.githubusercontent.com/75461311/172259543-2e62d3a0-cfd6-4ad7-8727-b51707704497.png)
+
 ### Tech stack
 * Javascript + XML (AJAX)
 * Node.js
